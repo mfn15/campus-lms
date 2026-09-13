@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campus LMS</title>
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<div id="login-screen" class="screen">
+  <form id="login-form" class="login-card">
+    <h1>Campus LMS</h1>
+    <p class="subtitle">Learning Management System</p>
+    <input id="login-username" type="text" placeholder="Username" autocomplete="username" required>
+    <input id="login-password" type="password" placeholder="Password" autocomplete="current-password" required>
+    <button type="submit">Log In</button>
+    <p id="login-error" class="error-text"></p>
+    <p class="hint">Demo: admin/admin123, teacher/teacher123, student1/student123</p>
+  </form>
+</div>
+
+<div id="app-screen" class="screen" hidden>
+  <nav class="sidebar">
+    <h2>Campus LMS</h2>
+    <button class="nav-btn active" data-view="dashboard">Dashboard</button>
+    <button class="nav-btn" data-view="courses">Courses</button>
+    <div class="sidebar-footer">
+      <span id="current-user-name"></span>
+      <button id="logout-btn">Log Out</button>
+    </div>
+  </nav>
+
+  <main class="content">
+    <section id="view-dashboard" class="view active">
+      <h1>Dashboard</h1>
+      <div id="dashboard-stats" class="stat-grid"></div>
+      <div id="dashboard-extra"></div>
+    </section>
+
+    <section id="view-courses" class="view">
+      <h1>Courses</h1>
+      <div id="new-course-form" class="toolbar" hidden>
+        <input id="new-course-title" placeholder="Course title">
+        <input id="new-course-desc" placeholder="Description">
+        <button id="new-course-btn">Create Course</button>
+      </div>
+      <div id="courses-list" class="card-grid"></div>
+    </section>
+
+    <section id="view-course-detail" class="view">
+      <button class="btn-sm" onclick="App.showView('courses')">&larr; Back to Courses</button>
+      <h1 id="cd-title"></h1>
+      <p id="cd-description" class="muted"></p>
+
+      <h2>Announcements</h2>
+      <div id="cd-announcements"></div>
+      <div id="cd-announcement-form" class="toolbar" hidden>
+        <input id="cd-announcement-input" placeholder="Post an announcement...">
+        <button id="cd-post-announcement">Post</button>
+      </div>
+
+      <h2>Assignments</h2>
+      <div id="cd-assignments-list"></div>
+      <div id="cd-new-assignment-form" class="toolbar" hidden>
+        <input id="cd-assign-title" placeholder="Assignment title">
+        <input id="cd-assign-due" type="date">
+        <input id="cd-assign-marks" type="number" placeholder="Max marks" value="100">
+        <button id="cd-new-assignment-btn">Add Assignment</button>
+      </div>
+
+      <h2>Roster</h2>
+      <table class="data-table"><thead><tr><th>Name</th><th>Username</th></tr></thead><tbody id="cd-roster-body"></tbody></table>
+      <div id="cd-enroll-form" class="toolbar" hidden>
+        <input id="cd-enroll-username" placeholder="Student username">
+        <button id="cd-enroll-btn">Enroll Student</button>
+      </div>
+    </section>
+
+    <section id="view-assignment-detail" class="view">
+      <button class="btn-sm" onclick="App.showView('course-detail')">&larr; Back to Course</button>
+      <h1 id="ad-title"></h1>
+      <div id="ad-submit-form" class="invoice-form" hidden>
+        <textarea id="ad-submission-content" rows="6" placeholder="Write your submission here..."></textarea>
+        <button id="ad-submit-btn" class="primary-btn">Submit</button>
+      </div>
+      <table class="data-table" id="ad-submissions-table" hidden>
+        <thead><tr><th>Student</th><th>Submitted</th><th>Grade</th><th>Feedback</th><th></th></tr></thead>
+        <tbody id="ad-submissions-body"></tbody>
+      </table>
+    </section>
+  </main>
+</div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>
